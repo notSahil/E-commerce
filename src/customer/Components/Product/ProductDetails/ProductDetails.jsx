@@ -11,6 +11,8 @@ import { addItemToCart } from "../../../../Redux/Customers/Cart/Action";
 import { getAllReviews } from "../../../../Redux/Customers/Review/Action";
 
 import { gounsPage1 } from "../../../../Data/Gouns/gouns";
+import {API_BASE_URL} from '../../../../config/api'
+
 
 
 
@@ -95,7 +97,7 @@ export default function ProductDetails() {
       const data = { productId: Number(productId), jwt };
       await dispatch(findProductById(data));
       await dispatch(getAllReviews(productId));
-      const response = await fetch("http://localhost:5454/api/products/all");
+      const response = await fetch("${API_BASE_URL}/api/products/all");
       const products = await response.json();
       const categoryIds = products.map((product) => product.category.id);
       // Set the category ID based on the productId

@@ -5,6 +5,7 @@ import Card from '@mui/material/Card';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
+import { API_BASE_URL } from '../../config/api';
 
 const MonthlyOverview = () => {
   const [productCount, setProductCount] = useState(null);
@@ -18,7 +19,7 @@ const MonthlyOverview = () => {
   useEffect(() => {
     const fetchProductCount = async () => {
       try {
-        const response = await fetch('http://localhost:5454/api/products/all');
+        const response = await fetch('${REACT_APP_URL}/api/products/all');
         if (!response.ok) {
           throw new Error('Failed to fetch product data');
         }
@@ -31,7 +32,7 @@ const MonthlyOverview = () => {
 
     const fetchUserCount = async () => {
       try {
-        const response = await fetch('http://localhost:5454/api/admin/Customer/users');
+        const response = await fetch('${API_BASE_URL}/api/admin/Customer/users');
         if (!response.ok) {
           throw new Error('Failed to fetch user data');
         }
@@ -44,7 +45,7 @@ const MonthlyOverview = () => {
 
     const fetchOrderData = async () => {
       try {
-        const response = await fetch('http://localhost:5454/api/admin/orders/');
+        const response = await fetch('${API_BASE_URL}/api/admin/orders/');
         if (!response.ok) {
           throw new Error('Failed to fetch order data');
         }

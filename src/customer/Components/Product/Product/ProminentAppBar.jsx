@@ -7,6 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import {API_BASE_URL} from '../../../../config/api'
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: '#fff', // Set background color to white
@@ -36,7 +37,7 @@ export default function ProminentAppBar() {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`http://localhost:5454/api/products/search?q=${encodeURIComponent(searchQuery)}`);
+      const response = await axios.get(`${API_BASE_URL}/api/products/search?q=${encodeURIComponent(searchQuery)}`);
       setSearchResults(response.data);
       setSearchPerformed(true);
     } catch (error) {

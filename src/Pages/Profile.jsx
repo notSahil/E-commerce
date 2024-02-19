@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Email, Person, Home } from '@mui/icons-material';
+import { API_BASE_URL } from '../config/api';
 
 const ProfilePage = () => {
   const [profileData, setProfileData] = useState(null);
@@ -21,7 +22,8 @@ const ProfilePage = () => {
       }
 
       // Make a GET request to fetch profile data
-      const response = await fetch('http://localhost:5454/api/users/profile', {
+      const response = await fetch(`${API_BASE_URL}/api/users/profile`, {
+
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${jwt}`, // Include JWT token in the Authorization header

@@ -8,7 +8,7 @@ function ProductSearch({ setSearchResults }) {
   const handleSearch = async (e) => {
     e.preventDefault(); // Prevent default form submission
     try {
-      const response = await axios.get(`http://localhost:5454/api/products/search?q=${encodeURIComponent(searchQuery)}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}api/products/search?q=${encodeURIComponent(searchQuery)}`);
       setSearchResults(response.data);
     } catch (error) {
       console.error('Error searching products:', error);

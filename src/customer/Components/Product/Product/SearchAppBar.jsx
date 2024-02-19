@@ -9,6 +9,7 @@ import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import axios from 'axios';
+import {API_BASE_URL} from '../../../../config/api'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -58,7 +59,7 @@ export default function SearchAppBar() {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`http://localhost:5454/api/products/search?q=${encodeURIComponent(searchQuery)}`);
+      const response = await axios.get(`${API_BASE_URL}/api/products/search?q=${encodeURIComponent(searchQuery)}`);
       setSearchResults(response.data);
     } catch (error) {
       console.error('Error searching products:', error);
