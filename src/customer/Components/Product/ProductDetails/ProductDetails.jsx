@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -77,7 +78,7 @@ export default function ProductDetails() {
   const { customersProduct } = useSelector((store) => store);
   const { productId } = useParams();
   
-  const jwt = localStorage.getItem("jwt");
+  //const jwt = localStorage.getItem("jwt");
    //console.log("param",productId,customersProduct.product,customersProduct.id)
    const [categoryId, setCategoryId] = useState(null); // State to store category ID
 
@@ -88,27 +89,34 @@ export default function ProductDetails() {
 
   const handleSubmit = () => {
     const data = { productId, size: selectedSize.name };
-    dispatch(addItemToCart({ data, jwt }));
+    //dispatch(addItemToCart({ data, jwt }));
     navigate("/cart");
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = { productId: Number(productId), jwt };
+      //const data = { productId: Number(productId), jwt };
+      console.log("hellladoasodasodaod");
+      const data = { productId: Number(productId) };
       await dispatch(findProductById(data));
       await dispatch(getAllReviews(productId));
-      const response = await fetch("${API_BASE_URL}/api/products/all");
+      const response = await fetch(`${API_BASE_URL}/api/products/all`);
+      
       const products = await response.json();
       const categoryIds = products.map((product) => product.category.id);
+      console.log("data should show here",products);
+      
       // Set the category ID based on the productId
       const productCategory = products.find((product) => product.id === Number(productId));
+      console.log(productCategory);
       if (productCategory) {
         setCategoryId(productCategory.category.id);
       }
     };
 
     fetchData();
-  }, [productId, dispatch, jwt]);
+  }, [productId]);
+// }, [productId, dispatch, jwt]);
   
 
   return (

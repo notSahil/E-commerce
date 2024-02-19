@@ -11,7 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import Avatar from '@mui/material/Avatar';
 import CardHeader from '@mui/material/CardHeader';
 import { useNavigate } from 'react-router-dom';
-import { API_BASE_URL } from '../../config/api';
+
 
 const CustomersTable = () => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const CustomersTable = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('${API_BASE_URL}/api/admin/Customer/users');
+        const response = await fetch('http://localhost:5454/api/admin/Customer/users');
         const data = await response.json();
         setRows(data); // Set the fetched data to the component state
       } catch (error) {
