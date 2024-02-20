@@ -12,7 +12,6 @@ import Avatar from '@mui/material/Avatar';
 import CardHeader from '@mui/material/CardHeader';
 import { useNavigate } from 'react-router-dom';
 
-
 const CustomersTable = () => {
   const navigate = useNavigate();
   const [rows, setRows] = useState([]);
@@ -21,6 +20,9 @@ const CustomersTable = () => {
     const fetchUsers = async () => {
       try {
         const response = await fetch('http://localhost:5454/api/admin/Customer/users');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
         const data = await response.json();
         setRows(data); // Set the fetched data to the component state
       } catch (error) {

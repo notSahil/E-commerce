@@ -11,7 +11,6 @@ import TableContainer from '@mui/material/TableContainer';
 import { Avatar, CardHeader, Pagination } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-
 const Customers = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
