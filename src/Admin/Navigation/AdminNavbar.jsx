@@ -18,6 +18,10 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import Avatar from '@mui/material/Avatar';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { getUser, logout } from "../../Redux/Auth/Action"
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -34,6 +38,9 @@ const Search = styled('div')(({ theme }) => ({
     width: 'auto',
   },
 }));
+
+
+
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -60,6 +67,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function AdminNavbar({handleSideBarViewInMobile}) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
+  };
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const theme = useTheme();
@@ -102,7 +115,7 @@ export default function AdminNavbar({handleSideBarViewInMobile}) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleLogout}>Logout</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
@@ -171,7 +184,7 @@ export default function AdminNavbar({handleSideBarViewInMobile}) {
             sx={{ mr: 2 }}
             onClick={handleSideBarViewInMobile}
           >
-            <MenuIcon />
+            <MenuIcon / >
           </IconButton>}
           <Avatar alt="Sparkling Gems" src="/public/logo.gif" />
           <Search>
@@ -195,11 +208,11 @@ export default function AdminNavbar({handleSideBarViewInMobile}) {
               aria-label="show 17 new notifications"
               color="inherit"
             >
-              <Badge badgeContent={17} color="error">
+              <Badge badgeContent={0} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-            <IconButton
+            {/* <IconButton
               size="large"
               edge="end"
               aria-label="account of current user"
@@ -209,7 +222,9 @@ export default function AdminNavbar({handleSideBarViewInMobile}) {
               color="inherit"
             >
               <AccountCircle />
-            </IconButton>
+              
+            </IconButton> */}
+            <button onClick={handleLogout}>Logout</button> 
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -217,9 +232,11 @@ export default function AdminNavbar({handleSideBarViewInMobile}) {
               aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
+              onClick={handleLogout}
               color="inherit"
             >
+              
+              
               <MoreIcon />
             </IconButton>
           </Box>
