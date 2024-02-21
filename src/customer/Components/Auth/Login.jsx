@@ -1,42 +1,49 @@
 import * as React from "react";
-import { Grid, TextField, Button, Box, Snackbar, Alert } from "@mui/material";
+import { Grid, TextField, Button, Snackbar, Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, login } from "../../../Redux/Auth/Action";
-import { useEffect } from "react";
-import { useState } from "react";
+import { login } from "../../../Redux/Auth/Action";
+import axios from 'axios';
 
 export default function LoginUserForm({ handleNext }) {
   const navigate = useNavigate();
-  const dispatch=useDispatch();
-  const jwt=localStorage.getItem("jwt");
-  const [openSnackBar,setOpenSnackBar]=useState(false);
+  const dispatch = useDispatch();
+  const [openSnackBar, setOpenSnackBar] = React.useState(false);
   const { auth } = useSelector((store) => store);
-  const handleCloseSnakbar=()=>setOpenSnackBar(false);
-  useEffect(()=>{
-    if(jwt){
-      dispatch(getUser(jwt))
-    }
-  
-  },[jwt])
-  
-  
-    useEffect(() => {
-      if (auth.user || auth.error) setOpenSnackBar(true)
-    }, [auth.user]);
-  const handleSubmit = (event) => {
+  const handleCloseSnakbar = () => setOpenSnackBar(false);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    
-    const userData={
-      email: data.get("email"),
-      password: data.get("password"),
-     
-    }
-    console.log("login user",userData);
-  
-    dispatch(login(userData));
 
+    const email = data.get("email");
+    const userData = {
+      email: email,
+      password: data.get("password"),
+    };
+
+    try {
+      // Fetch user data from the API endpoint
+      const response = await axios.get("http://localhost:5454/api/admin/Customer/users");
+      const users = response.data;
+
+      // Match email with the provided data
+      const matchedUser = users.find((user) => user.email === email);
+
+      if (matchedUser && matchedUser.role) {
+        // Redirect to admin page if the role is not null
+        navigate("/admin");
+      } else {
+        // Redirect to user page if the role is null or no user is found
+        navigate("/");
+      }
+
+      // Dispatch login action after handling redirection
+      dispatch(login(userData));
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      // Handle error fetching user data
+    }
   };
 
   return (
@@ -71,24 +78,16 @@ export default function LoginUserForm({ handleNext }) {
               type="submit"
               variant="contained"
               size="large"
-              sx={{padding:".8rem 0"}}
+              sx={{ padding: ".8rem 0" }}
             >
               Login
             </Button>
           </Grid>
         </Grid>
       </form>
-      <div className="flex justify-center flex-col items-center">
-         <div className="py-3 flex items-center">
-        <p className="m-0 p-0">don't have account ?</p>
-        <Button onClick={()=> navigate("/register")} className="ml-5" size="small">
-          Register
-        </Button>
-        </div>
-      </div>
       <Snackbar open={openSnackBar} autoHideDuration={6000} onClose={handleCloseSnakbar}>
         <Alert onClose={handleCloseSnakbar} severity="success" sx={{ width: '100%' }}>
-          {auth.error?auth.error:auth.user?"Register Success":""}
+          {auth.error ? auth.error : auth.user ? "Register Success" : ""}
         </Alert>
       </Snackbar>
     </React.Fragment>
