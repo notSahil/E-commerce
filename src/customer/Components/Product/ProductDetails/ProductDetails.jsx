@@ -522,11 +522,13 @@ export default function ProductDetails() {
 
         {/* similer product */}
         <section className=" pt-10">
+          <div>
           <h1 className="py-5 text-xl font-bold">Similer Products</h1>
           <div className="flex flex-wrap space-y-5">
            
               <HomeProductCard categoryId={categoryId} />
             
+          </div>
           </div>
         </section>
       </div>

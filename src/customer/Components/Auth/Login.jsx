@@ -29,6 +29,7 @@ export default function LoginUserForm({ handleNext }) {
 
       // Match email with the provided data
       const matchedUser = users.find((user) => user.email === email);
+      console.log("matched user",matchedUser);
 
       if (matchedUser && matchedUser.role) {
         // Redirect to admin page if the role is not null

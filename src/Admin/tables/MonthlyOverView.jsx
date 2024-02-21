@@ -5,6 +5,13 @@ import Card from '@mui/material/Card';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import PersonIcon from '@mui/icons-material/Person';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import CancelIcon from '@mui/icons-material/Cancel';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 
 const MonthlyOverview = () => {
   const [productCount, setProductCount] = useState(null);
@@ -91,32 +98,41 @@ const MonthlyOverview = () => {
   return (
     <Card>
       <CardContent>
-        <Grid container spacing={3}>
-          <Grid item xs={3}>
-            <Typography variant="h6" gutterBottom>
-              Total Products: {productCount || 'Loading...'}
-            </Typography>
+        <Grid container spacing={3} alignItems="center">
+          <Grid item xs={4}>
+            <Box display="flex" alignItems="center">
+              <ShoppingCartIcon fontSize="large" />
+              <Typography variant="h6" gutterBottom>
+                Total Products: {productCount || 'Loading...'}
+              </Typography>
+            </Box>
           </Grid>
-          <Grid item xs={3}>
-            <Typography variant="h6" gutterBottom>
-              Total Users: {userCount || 'Loading...'}
-            </Typography>
+          <Grid item xs={4}>
+            <Box display="flex" alignItems="center">
+              <PersonIcon fontSize="large" />
+              <Typography variant="h6" gutterBottom>
+                Total Users: {userCount || 'Loading...'}
+              </Typography>
+            </Box>
           </Grid>
-          <Grid item xs={6}>
-            <Typography variant="h6" gutterBottom>
-              Total Orders: {orderCount || 'Loading...'}
+          <Grid item xs={4}>
+            <Box display="flex" alignItems="center">
+              <AssignmentIcon fontSize="large" />
+              <Typography variant="h6" gutterBottom>
+                Total Orders: {orderCount || 'Loading...'}
+              </Typography>
+            </Box>
+            <Typography variant="body1" gutterBottom>
+              <CheckCircleIcon /> Delivered: {deliveredCount}
             </Typography>
             <Typography variant="body1" gutterBottom>
-              Delivered: {deliveredCount}
+              <CancelIcon /> Cancelled: {cancelledCount}
             </Typography>
             <Typography variant="body1" gutterBottom>
-              Cancelled: {cancelledCount}
+              <LocalShippingIcon /> Shipped: {shippedCount}
             </Typography>
             <Typography variant="body1" gutterBottom>
-              Shipped: {shippedCount}
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              Pending: {pendingCount}
+              <HourglassEmptyIcon /> Pending: {pendingCount}
             </Typography>
           </Grid>
         </Grid>

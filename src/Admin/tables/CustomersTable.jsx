@@ -24,7 +24,7 @@ const CustomersTable = () => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setRows(data); // Set the fetched data to the component state
+        setRows(data.reverse()); // Set the fetched data to the component state in reverse order
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
@@ -45,7 +45,7 @@ const CustomersTable = () => {
         }}
       />
       <TableContainer>
-        <Table sx={{ minWidth: 390 }} aria-label='table in dashboard'>
+        <Table sx={{ minWidth: 390  }} aria-label='table in dashboard'>
           <TableHead>
             <TableRow>
               <TableCell>Image</TableCell>
