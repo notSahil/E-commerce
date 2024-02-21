@@ -32,7 +32,7 @@ function Navbar() {
             </Link>
 
             {/* Navigation menu */}
-            <ul className="hidden md:flex items-center space-x-4">
+            <ul className="hidden md:flex items-center space-x-6">
               {/* Menu items */}
               
             </ul>

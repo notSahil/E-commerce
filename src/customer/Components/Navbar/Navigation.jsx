@@ -395,7 +395,7 @@ export default function Navigation() {
                       )}
                     </Popover>
                   ))}
-
+                  <ProminentAppBar />
                   {navigation.pages.map((page) => (
                     <a
                       key={page.name}
@@ -408,7 +408,7 @@ export default function Navigation() {
                 </div>
               </Popover.Group>
               <div className="ml-auto flex items-center">
-                <ProminentAppBar />
+                
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   {auth.user ? (
                     <div>
@@ -419,10 +419,11 @@ export default function Navigation() {
                         aria-haspopup="true"
                         aria-expanded={open ? "true" : undefined}
                         sx={{
-                          bgcolor: deepPurple[500],
-                          color: "white",
+                          bgcolor: "#ebebb0",
+                          color: "black",
                           cursor: "pointer",
                         }}
+                        
                       >
                         {auth.user?.firstName[0].toUpperCase()}
                       </Avatar>

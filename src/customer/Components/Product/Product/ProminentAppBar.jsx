@@ -10,24 +10,63 @@ import { Link } from 'react-router-dom';
 import {API_BASE_URL} from '../../../../config/api'
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  backgroundColor: '#fff', // Set background color to white
+  backgroundColor: 'whitesmoke', // Set background color to white
   color: '#000', // Set text color to black
   boxShadow: 'none', // Remove box shadow
   borderBottom: '1px solid #dadce0', // Add bottom border
+  width: 'auto', 
+  padding : '10px',
+  marginTop : '4px',
+  marginLeft : '25px',
+  // border : '1px solid black'
 }));
+ 
+const ProductTitle = styled('div')(
+  {
+    padding : '5px',
+    margin : '5px',
+    fontWeight : 'bold',
+    border: '1px solid grey',
+    backgroundColor : '#F5F5DC',
+    borderRadius : '2px'
+  }
+);
 
 const SearchContainer = styled('div')({
   justifyContent: 'center',
-  width:"200px" // Adjusted padding for smaller area
+  alignItems : 'center',
+  width:"300px",
+  position:'relative', // Adjusted padding for smaller area
+  // marginBottom : '10px'
 });
 
 const SearchInput = styled(InputBase)(({ theme }) => ({
-  width: '150px', // Adjusted width for smaller area
-  backgroundColor: '#6A1B9A', // Set background color to purple
-  color: '#FFFFFF', // Set text color to white
+  width: '250px', // Adjusted width for smaller area
+  backgroundColor: '#ebebb0', // Set background color to purple
+  color: 'black', // Set text color to white
   borderRadius: '30px', // Add border radius
-  padding: '6px 5px', // Adjusted padding for smaller area
+  padding: '6px 5px',
+  alignItems : 'center',
+  textAlign : 'center',
+  justifyContent : 'center',
+  position:'absolute', // Adjusted padding for smaller area
+  marginLeft : '10px',
 }));
+
+const ProductListContainer = styled('div')({
+  backgroundColor : 'white',
+  padding : '5px',
+  marginTop : '10px',
+});
+  
+const Placeholder = styled('span')({
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  pointerEvents: 'none',
+  color: '#FFFFFF',
+});
 
 export default function ProminentAppBar() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -58,7 +97,7 @@ export default function ProminentAppBar() {
   };
 
   return (
-    <div style={{width:"250px"}}>
+    <div >
       <StyledAppBar position="static">
         <SearchContainer>
           <IconButton
@@ -71,7 +110,7 @@ export default function ProminentAppBar() {
           </IconButton>
           {isSearchOpen && (
             <SearchInput
-              placeholder="Search the Product"
+              placeholder="          Search the Product"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => {
@@ -83,24 +122,25 @@ export default function ProminentAppBar() {
           )}
         </SearchContainer>
         {isSearchOpen && searchPerformed && (
-          <div>
-            {searchResults.length === 0 ? (
-              <div>No products found</div>
-            ) : (
-              searchResults.map((product) => (
-                <div key={product.id}>
-                  <Link
-                    to={`/product/${product.id}`}
-                    style={{ textDecoration: 'none', color: 'inherit' }}
-                    onClick={handleItemClick} // Add onClick event handler
-                  >
-                    {/* Display the product title */}
-                    <div>{product.title}</div>
-                  </Link>
-                </div>
-              ))
-            )}
-          </div>
+          <ProductListContainer>
+          {searchResults.length === 0 ? (
+            <div>No products found</div>
+          ) : (
+            searchResults.map((product) => (
+              <div key={product.id}>
+                <Link
+                  to={`/product/${product.id}`}
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                  onClick={handleItemClick} // Add onClick event handler
+                >
+                  {/* Display the product title */}
+                  <ProductTitle>{product.title}</ProductTitle>
+                </Link>
+              </div>
+            ))
+          )}
+          </ProductListContainer>
+        
         )}
       </StyledAppBar>
     </div>

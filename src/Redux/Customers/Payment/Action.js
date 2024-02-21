@@ -26,7 +26,7 @@ import {
       };
   
       const { data } = await axios.post(`${API_BASE_URL}/api/payments/${reqData.orderId}`,reqData, config);
-  console.log("datta",data)
+  console.log("dattaa",data)
   if(data.payment_link_url){
     window.location.href=data.payment_link_url;
   }
