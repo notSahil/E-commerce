@@ -71,7 +71,10 @@ export default function AdminPannel() {
 
       // Check if JWT token is available
       if (!jwt) {
-        throw new Error('JWT token is missing.');
+        navigate('/');
+        return;
+        // throw new Error('JWT token is missing.');
+        
       }
 
       // Make a GET request to fetch profile data
@@ -81,6 +84,7 @@ export default function AdminPannel() {
           'Content-Type': 'application/json'
         }
       });
+    
 
       // Check if the request was successful
       if (!response.data) {
