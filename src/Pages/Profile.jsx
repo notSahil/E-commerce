@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Email, Person, Home } from '@mui/icons-material';
+import { Avatar } from '@mui/material'; // Import Avatar component
 import { API_BASE_URL } from '../config/api';
 
 const ProfilePage = () => {
@@ -23,7 +24,6 @@ const ProfilePage = () => {
 
       // Make a GET request to fetch profile data
       const response = await fetch(`${API_BASE_URL}/api/users/profile`, {
-
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${jwt}`, // Include JWT token in the Authorization header
@@ -44,6 +44,11 @@ const ProfilePage = () => {
     }
   };
 
+  // Function to get initials from user's name
+  const getInitials = (name) => {
+    return name.split(' ').map(part => part[0]).join('').toUpperCase();
+  };
+
   return (
     <div style={styles.pageContainer}>
       <div style={styles.profileContainer}>
@@ -53,6 +58,10 @@ const ProfilePage = () => {
         ) : (
           profileData ? (
             <div style={styles.profileDetails}>
+              {/* Avatar with user's initials */}
+              <Avatar sx={{ bgcolor: 'pink', width: 120, height: 120, fontSize: 48, margin: '0 auto' }}>
+  {getInitials(`${profileData.firstName} ${profileData.lastName}`)}
+</Avatar>
               <p style={styles.profileText}><Person style={{ color: '#E91E63' }} /> <strong>Name:</strong> {profileData.firstName} {profileData.lastName}</p>
               <p style={styles.profileText}><Email style={{ color: '#4CAF50' }} /> <strong>Email:</strong> {profileData.email}</p>
               <h2 style={styles.addressTitle}><Home style={{ color: '#FFC107' }} /> Saved  Addresses</h2>
@@ -93,11 +102,11 @@ const styles = {
     padding: '20px',
     borderRadius: '8px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    textAlign: 'center', // Center the avatar
   },
   userProfileTitle: {
     fontSize: '36px',
     fontWeight: 'bold',
-    textAlign: 'center',
     marginBottom: '20px',
   },
   errorMessage: {
@@ -115,13 +124,12 @@ const styles = {
     marginBottom: '10px',
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center', // Center the profile text
   },
   addressTitle: {
     fontSize: '24px',
     fontWeight: 'bold',
     marginBottom: '20px',
-    display: 'flex',
-    alignItems: 'center',
   },
   addressBox: {
     backgroundColor: '#f9f9f9',
@@ -134,8 +142,6 @@ const styles = {
     fontSize: '18px',
     fontWeight: 'bold',
     marginBottom: '10px',
-    display: 'flex',
-    alignItems: 'center',
   },
   addressDetails: {
     marginLeft: '20px',
