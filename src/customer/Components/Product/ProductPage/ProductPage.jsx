@@ -11,7 +11,7 @@ const ProductPage = () => {
 
   const handleFetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:5454/api/products/all');
+      const response = await axios.get('${API_BASE_URL}/api/products/all');
       console.log(response.data);
       setData(response.data);
       dispatch({ type: 'UPDATE_PRODUCTS', payload: response.data });

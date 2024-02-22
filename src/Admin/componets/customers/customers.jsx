@@ -23,7 +23,7 @@ const Customers = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch('http://localhost:5454/api/admin/Customer/users');
+      const response = await fetch('${API_BASE_URL}/api/admin/Customer/users');
       const data = await response.json();
       setUsers(data);
     } catch (error) {

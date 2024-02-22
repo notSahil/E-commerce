@@ -100,6 +100,7 @@ const Dashboard = () => {
             <Grid item xs={12} md={6} lg={4}>
             <CustomersTable />
             </Grid>
+            
             {/* <Grid item xs={12} md={12} lg={8}>
               <RecentOrders />
             </Grid> */}
@@ -114,6 +115,7 @@ const Dashboard = () => {
               <CustomersTable />
             </Grid> */}
           </Grid>
+          {/* <RecentlyAddeddProducts /> */}
         </AdminPannel>
       </ThemeProvider>
     </div>

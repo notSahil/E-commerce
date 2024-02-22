@@ -19,7 +19,7 @@ const CustomersTable = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:5454/api/admin/Customer/users');
+        const response = await fetch('${API_BASE_URL}/api/admin/Customer/users');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
