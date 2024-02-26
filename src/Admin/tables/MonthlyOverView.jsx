@@ -27,7 +27,11 @@ const MonthlyOverview = () => {
   useEffect(() => {
     const fetchProductCount = async () => {
       try {
+<<<<<<< HEAD
         const response = await fetch(`${API_BASE_URL}/api/products/all`);
+=======
+        const response = await fetch('${API_BASE_URL}/api/products/all');
+>>>>>>> a375ee182488d64be1f69609851faa23719d6e46
         if (!response.ok) {
           throw new Error('Failed to fetch product data');
         }
@@ -40,7 +44,11 @@ const MonthlyOverview = () => {
 
     const fetchUserCount = async () => {
       try {
+<<<<<<< HEAD
         const response = await fetch(`${API_BASE_URL}/api/admin/Customer/users`);
+=======
+        const response = await fetch('${API_BASE_URL}/api/admin/Customer/users');
+>>>>>>> a375ee182488d64be1f69609851faa23719d6e46
         if (!response.ok) {
           throw new Error('Failed to fetch user data');
         }
@@ -53,7 +61,11 @@ const MonthlyOverview = () => {
 
     const fetchOrderData = async () => {
       try {
+<<<<<<< HEAD
         const response = await fetch(`${API_BASE_URL}/api/admin/orders/`);
+=======
+        const response = await fetch('${API_BASE_URL}/api/admin/orders/');
+>>>>>>> a375ee182488d64be1f69609851faa23719d6e46
         if (!response.ok) {
           throw new Error('Failed to fetch order data');
         }

@@ -12,7 +12,11 @@ const ProductPage = () => {
 
   const handleFetchProducts = async () => {
     try {
+<<<<<<< HEAD
       const response = await axios.get(`${API_BASE_URL}/api/products/all`);
+=======
+      const response = await axios.get('${API_BASE_URL}/api/products/all');
+>>>>>>> a375ee182488d64be1f69609851faa23719d6e46
       console.log(response.data);
       setData(response.data);
       dispatch({ type: 'UPDATE_PRODUCTS', payload: response.data });
