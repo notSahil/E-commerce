@@ -19,31 +19,18 @@ const Customers = () => {
   const [usersPerPage] = useState(10);
 
   useEffect(() => {
-    
-    const fetchUsers = async () => {
-      try {
-        const response = await fetch(`${API_BASE_URL}/api/admin/Customer/users`);
-        const data = await response.json();
-        setUsers(data);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };fetchUsers();
+    fetchUsers();
   }, []);
 
-<<<<<<< HEAD
-  
-=======
   const fetchUsers = async () => {
     try {
-      const response = await fetch('${API_BASE_URL}/api/admin/Customer/users');
+      const response = await fetch(`${API_BASE_URL}/api/admin/Customer/users`);
       const data = await response.json();
       setUsers(data);
     } catch (error) {
       console.error('Error fetching user data:', error);
     }
   };
->>>>>>> a375ee182488d64be1f69609851faa23719d6e46
 
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;

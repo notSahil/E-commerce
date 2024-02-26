@@ -26,11 +26,7 @@ export default function LoginUserForm({ handleNext }) {
     try {
       console.log("userdata:--",userData);
       // Fetch user data from the API endpoint
-<<<<<<< HEAD
       const response = await axios.get(`${API_BASE_URL}/api/admin/Customer/users`);
-=======
-      const response = await axios.get("${API_BASE_URL}/api/admin/Customer/users");
->>>>>>> a375ee182488d64be1f69609851faa23719d6e46
       const users = response.data;
 
       // Match email with the provided data

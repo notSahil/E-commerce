@@ -11,7 +11,6 @@ import TableContainer from '@mui/material/TableContainer';
 import Avatar from '@mui/material/Avatar';
 import CardHeader from '@mui/material/CardHeader';
 import { useNavigate } from 'react-router-dom';
-
 import { API_BASE_URL } from '../../config/api';
 
 const CustomersTable = () => {
@@ -21,11 +20,7 @@ const CustomersTable = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-<<<<<<< HEAD
         const response = await fetch(`${API_BASE_URL}/api/admin/Customer/users`);
-=======
-        const response = await fetch('${API_BASE_URL}/api/admin/Customer/users');
->>>>>>> a375ee182488d64be1f69609851faa23719d6e46
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

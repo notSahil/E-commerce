@@ -8,11 +8,7 @@ const HomeProductCard = ({ categoryId }) => {
 
   useEffect(() => {
     // Fetch products from your backend API
-<<<<<<< HEAD
     fetch(`${API_BASE_URL}/api/products/all`)
-=======
-    fetch("${API_BASE_URL}/api/products/all")
->>>>>>> a375ee182488d64be1f69609851faa23719d6e46
       .then((response) => response.json())
       .then((data) => {
         // Filter products with the provided category id
