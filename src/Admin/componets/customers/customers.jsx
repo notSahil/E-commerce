@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import TableContainer from '@mui/material/TableContainer';
 import { Avatar, CardHeader, Pagination } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../../../config/api';
 
 const Customers = () => {
   const navigate = useNavigate();
@@ -18,18 +19,19 @@ const Customers = () => {
   const [usersPerPage] = useState(10);
 
   useEffect(() => {
-    fetchUsers();
+    
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/admin/Customer/users`);
+        const data = await response.json();
+        setUsers(data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };fetchUsers();
   }, []);
 
-  const fetchUsers = async () => {
-    try {
-      const response = await fetch('http://localhost:5454/api/admin/Customer/users');
-      const data = await response.json();
-      setUsers(data);
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-    }
-  };
+  
 
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;

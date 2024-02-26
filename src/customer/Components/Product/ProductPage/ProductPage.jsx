@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import ProductCard from "../ProductCard/ProductCard";
+import { API_BASE_URL } from "../../../../config/api";
 
 const ProductPage = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const ProductPage = () => {
 
   const handleFetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:5454/api/products/all');
+      const response = await axios.get(`${API_BASE_URL}/api/products/all`);
       console.log(response.data);
       setData(response.data);
       dispatch({ type: 'UPDATE_PRODUCTS', payload: response.data });

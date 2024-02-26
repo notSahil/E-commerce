@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../../../config/api";
 
 const HomeProductCard = ({ categoryId }) => {
   const [products, setProducts] = useState([]);
@@ -7,7 +8,7 @@ const HomeProductCard = ({ categoryId }) => {
 
   useEffect(() => {
     // Fetch products from your backend API
-    fetch("http://localhost:5454/api/products/all")
+    fetch(`${API_BASE_URL}/api/products/all`)
       .then((response) => response.json())
       .then((data) => {
         // Filter products with the provided category id

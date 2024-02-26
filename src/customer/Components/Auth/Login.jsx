@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../Redux/Auth/Action";
 import axios from 'axios';
+import { API_BASE_URL } from "../../../config/api";
 
 export default function LoginUserForm({ handleNext }) {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function LoginUserForm({ handleNext }) {
 
     try {
       // Fetch user data from the API endpoint
-      const response = await axios.get("http://localhost:5454/api/admin/Customer/users");
+      const response = await axios.get(`${API_BASE_URL}/api/admin/Customer/users`);
       const users = response.data;
 
       // Match email with the provided data

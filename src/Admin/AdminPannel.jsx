@@ -29,6 +29,7 @@ import OrdersTable from "./componets/Orders/OrdersTable";
 import Customers from "./componets/customers/customers";
 import UpdateProductForm from "./componets/updateProduct/UpdateProduct";
 import axios from 'axios';
+import { API_BASE_URL } from "../config/api";
 
 const drawerWidth = 240;
 
@@ -78,7 +79,7 @@ export default function AdminPannel() {
       }
 
       // Make a GET request to fetch profile data
-      const response = await axios.get('http://localhost:5454/api/users/profile', {
+      const response = await axios.get(`${API_BASE_URL}/api/users/profile`, {
         headers: {
           'Authorization': `Bearer ${jwt}`,
           'Content-Type': 'application/json'
