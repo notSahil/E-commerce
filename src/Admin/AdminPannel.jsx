@@ -71,22 +71,12 @@ export default function AdminPannel() {
       const jwt = localStorage.getItem('jwt');
 
       // Check if JWT token is available
-    
-
-      // Make a GET request to fetch profile data
-      const response = await axios.get('${API_BASE_URL}/api/users/profile', {
-        headers: {
-          'Authorization': `Bearer ${jwt}`,
-          'Content-Type': 'application/json'
-        }
-      });
       if (!jwt) {
         navigate('/');
         return;
         // throw new Error('JWT token is missing.');
         
       }
-<<<<<<< HEAD
 
       // Make a GET request to fetch profile data
       const response = await axios.get(`${API_BASE_URL}/api/users/profile`, {
@@ -95,8 +85,6 @@ export default function AdminPannel() {
           'Content-Type': 'application/json'
         }
       });
-=======
->>>>>>> a375ee182488d64be1f69609851faa23719d6e46
     
 
       // Check if the request was successful
@@ -106,7 +94,6 @@ export default function AdminPannel() {
 
       // Check if the role is admin
       const role = response.data.role;
-      console.log("ROLE data in admin:",role);
       if (!role) {
         // If role is null, redirect the user
         navigate('/');
