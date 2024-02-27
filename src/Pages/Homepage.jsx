@@ -32,13 +32,10 @@ const Homepage = () => {
         <HomeProductCard categoryId={305} />
         <HomeProductSection data={mensShoesPage1} section={"Women's Ring"} />
         <HomeProductCard categoryId={306} />
-        {/* <HomeProductSection data={lengha_page1} section={"Lengha Choli"} /> */}
-        <HomeProductSection data={gounsPage1} section={"Men's Accessories"} />
+        <HomeProductSection data={gounsPage1} section={"Women's Anklet"} />
         <HomeProductCard categoryId={303} />
         <HomeProductSection data={kurtaPage1} section={"Women's Accessories"}  />
         <HomeProductCard categoryId={404} />
-        
-        {/* <HomeProductSection data={mensPantsPage1} section={"Men's Pants"} /> */}
       </div>
     </div>
   );

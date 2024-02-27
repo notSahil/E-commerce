@@ -13,6 +13,7 @@ import Cart from "../customer/Components/Product/Cart/Cart";
 import DemoAdmin from "../Admin/Views/DemoAdmin";
 import AdminPannel from "../Admin/AdminPannel";
 import Navigation from "../customer/Components/Navbar/Navigation";
+import RegisterUserForm from "../customer/Components/Auth/Register";
 
 const Routers = () => {
   return (
@@ -26,6 +27,7 @@ const Routers = () => {
         <Route path="/" element={<Homepage/>}></Route>
         <Route path="/home" element={<Homepage/>}></Route>
         <Route path="/about" element={<About/>}></Route>
+        <Route path="/register" element={<RegisterUserForm/>}></Route>
         <Route path="/privaciy-policy" element={<PrivacyPolicy/>}></Route>
         <Route path="/terms-condition" element={<TearmsCondition/>}></Route>
         <Route path="/contact" element={<Contact/>}></Route>
