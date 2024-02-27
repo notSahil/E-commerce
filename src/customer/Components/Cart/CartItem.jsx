@@ -6,18 +6,19 @@ import { IconButton } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 
-const CartItem = ({ item,showButton }) => {
+const CartItem = ({ item, showButton }) => {
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
 
   const handleRemoveItemFromCart = () => {
     const data = { cartItemId: item?.id, jwt };
-    dispatch(removeCartItem(data));
+    dispatch(removeCartItem(data)); // Dispatch the removeCartItem action
   };
-  const handleUpdateCartItem=(num)=>{
-    const data={data:{quantity:item.quantity+num}, cartItemId:item?.id, jwt}
-    dispatch(updateCartItem(data))
-  }
+  const handleUpdateCartItem = (num) => {
+    const data = { data: { quantity: item.quantity + num }, cartItemId: item?.id, jwt };
+    dispatch(updateCartItem(data)); // Dispatch the updateCartItem action
+  };
+
   return (
     <div className="p-5 shadow-lg border rounded-md">
       <div className="flex items-center">
@@ -43,25 +44,24 @@ const CartItem = ({ item,showButton }) => {
           </div>
         </div>
       </div>
-     {showButton&& <div className="lg:flex items-center lg:space-x-10 pt-4">
-        <div className="flex items-center space-x-2 ">
-          <IconButton onClick={()=>handleUpdateCartItem(-1)} disabled={item?.quantity<=1} color="primary" aria-label="add an alarm">
-            <RemoveCircleOutlineIcon />
-          </IconButton>
-
-          <span className="py-1 px-7 border rounded-sm">{item?.quantity}</span>
-          <IconButton onClick={()=>handleUpdateCartItem(1)} color="primary" aria-label="add an alarm">
-            <AddCircleOutlineIcon />
-          </IconButton>
+      {showButton && (
+        <div className="lg:flex items-center lg:space-x-10 pt-4">
+          <div className="flex items-center space-x-2 ">
+            <IconButton onClick={() => handleUpdateCartItem(-1)} disabled={item?.quantity <= 1} color="primary" aria-label="subtract from quantity">
+              <RemoveCircleOutlineIcon />
+            </IconButton>
+            <span className="py-1 px-7 border rounded-sm">{item?.quantity}</span>
+            <IconButton onClick={() => handleUpdateCartItem(1)} color="primary" aria-label="add to quantity">
+              <AddCircleOutlineIcon />
+            </IconButton>
+          </div>
+          <div className="flex text-sm lg:text-base mt-5 lg:mt-0">
+            <Button onClick={handleRemoveItemFromCart} variant="text">
+              Remove
+            </Button>
+          </div>
         </div>
-        <div className="flex text-sm lg:text-base mt-5 lg:mt-0">
-          
-          <Button onClick={handleRemoveItemFromCart} variant="text">
-            Remove{" "}
-          </Button>
-          
-        </div>
-      </div>}
+      )}
     </div>
   );
 };

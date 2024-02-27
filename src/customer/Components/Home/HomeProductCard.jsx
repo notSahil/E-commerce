@@ -13,7 +13,9 @@ const HomeProductCard = ({ categoryId }) => {
       .then((data) => {
         // Filter products with the provided category id
         const filteredProducts = data.filter((product) => product.category.id === categoryId);
-        setProducts(filteredProducts);
+        // Limit the number of products to display
+        const limitedProducts = filteredProducts.slice(0, 5); // Adjust the number '5' to limit to your desired count
+        setProducts(limitedProducts);
       })
       .catch((error) => console.error("Error fetching products:", error));
   }, [categoryId]);

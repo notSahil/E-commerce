@@ -10,8 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { findProductById } from "../../../../Redux/Customers/Product/Action";
 import { addItemToCart } from "../../../../Redux/Customers/Cart/Action";
 import { getAllReviews } from "../../../../Redux/Customers/Review/Action";
-
-import { gounsPage1 } from "../../../../Data/Gouns/gouns";
 import {API_BASE_URL} from '../../../../config/api'
 
 
@@ -78,7 +76,7 @@ export default function ProductDetails() {
   const { customersProduct } = useSelector((store) => store);
   const { productId } = useParams();
   
-  //const jwt = localStorage.getItem("jwt");
+  const jwt = localStorage.getItem("jwt");
    //console.log("param",productId,customersProduct.product,customersProduct.id)
    const [categoryId, setCategoryId] = useState(null); // State to store category ID
 
@@ -89,7 +87,7 @@ export default function ProductDetails() {
 
   const handleSubmit = () => {
     const data = { productId, size: selectedSize.name };
-    //dispatch(addItemToCart({ data, jwt }));
+    dispatch(addItemToCart({ data, jwt }));
     navigate("/cart");
   };
 
