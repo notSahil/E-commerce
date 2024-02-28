@@ -26,7 +26,10 @@ public class AppConfig {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
         .authorizeHttpRequests(Authorize -> Authorize
-                .requestMatchers("/admin/**").permitAll() // Restrict /admin page to users with ADMIN role
+                .requestMatchers("/admin/**").permitAll()
+                // Restrict /admin page to users with ADMIN role
+                .requestMatchers("/api/products/all").permitAll() 
+                .requestMatchers("/api/cart/**").authenticated() 
 //                .requestMatchers("/api/**").permitAll()
                 .anyRequest().permitAll()
                 )

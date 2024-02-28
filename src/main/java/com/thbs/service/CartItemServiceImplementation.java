@@ -69,28 +69,23 @@ public class CartItemServiceImplementation implements CartItemService {
 	}
 	
 	
-//
-//	@Override
-//	public void removeCartItem(Long userId,Long cartItemId) throws CartItemException, UserException {
-//		
-//		System.out.println("userId- "+userId+" cartItemId "+cartItemId);
-//		
-//		CartItem cartItem=findCartItemById(cartItemId);
-//		
-//		User user=userService.findUserById(cartItem.getUserId());
-//		User reqUser=userService.findUserById(userId);
-//		
-//		if(user.getId().equals(reqUser.getId())) {
-//			cartItemRepository.deleteById(cartItem.getId());
-//		}
-//		else {
-//			throw new UserException("you can't remove anothor users item");
-//		}
-//		
-//	}
+
+@Override
+public void removeCartItem(Long userId, Long cartItemId) throws CartItemException, UserException {
+    CartItem cartItem = findCartItemById(cartItemId);
+    User user = userService.findUserById(cartItem.getUserId());
+    User reqUser = userService.findUserById(userId);
+
+    if (user.getId().equals(reqUser.getId())) {
+        cartItemRepository.deleteById(cartItem.getId());
+    } else {
+        throw new UserException("You can't remove another user's item");
+    }
+}
+
 	
 	//updated removecart
-	@Override
+	/*@Override
 	public void removeCartItem(Long userId, Long cartItemId) throws CartItemException, UserException {
 	    System.out.println("userId- " + userId + " cartItemId " + cartItemId);
 
@@ -105,7 +100,7 @@ public class CartItemServiceImplementation implements CartItemService {
 	        throw new UserException("You can't remove another user's item");
 	    }
 	}
-
+*/
 
 	@Override
 	public CartItem findCartItemById(Long cartItemId) throws CartItemException {

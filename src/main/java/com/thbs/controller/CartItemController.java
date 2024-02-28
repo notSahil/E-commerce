@@ -31,14 +31,17 @@ public class CartItemController {
 	}
 	
 	@DeleteMapping("/del/{cartItemId}")
-	public ResponseEntity<ApiResponse>deleteCartItemHandler(@PathVariable Long cartItemId, @RequestHeader("Authorization")String jwt) throws CartItemException, UserException{
-		
-		User user=userService.findUserProfileByJwt(jwt);
-		cartItemService.removeCartItem(user.getId(), cartItemId);
-		
-		ApiResponse res=new ApiResponse("Item Remove From Cart",true);
-		
-		return new ResponseEntity<ApiResponse>(res,HttpStatus.ACCEPTED);
+	public ResponseEntity<ApiResponse> deleteCartItemHandler(@PathVariable Long cartItemId, @RequestHeader("Authorization") String jwt) {
+	    try {
+	        User user = userService.findUserProfileByJwt(jwt);
+	        cartItemService.removeCartItem(user.getId(), cartItemId);
+	        ApiResponse res = new ApiResponse("Item Removed From Cart", true);
+	        return ResponseEntity.status(HttpStatus.ACCEPTED).body(res);
+	    } catch (CartItemException | UserException e) {
+	        // Handle exceptions appropriately
+	        ApiResponse res = new ApiResponse(e.getMessage(), false);
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
+	    }
 	}
 	
 	@PutMapping("/{cartItemId}")
