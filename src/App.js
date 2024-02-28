@@ -14,10 +14,10 @@ function App() {
     <div className="">
       
       <Routes>
-        <Route path="/*" element={<CustomerRoutes />} />
+  <Route path="/*" element={<CustomerRoutes />} />
         <Route path="/admin/*" element={<AdminPannel />} />
-        <Route path="/Product/All/*" element={<ProductPage />}/>
-        
+        <Route path="/products/*" element={<ProductPage />} /> {/* New route for product page */}
+        <Route path="*" element={<NotFound />} /> {/* Route for 404 Not Found */}
       </Routes>
     </div>
   );

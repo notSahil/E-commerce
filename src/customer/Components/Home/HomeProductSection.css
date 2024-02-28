@@ -1,4 +1,17 @@
-.alice-carousel__stage-item {
-    
-  }
-  
+.home-product-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.home-product-card img {
+  width: 100%;
+  height: auto;
+}
+
+.home-product-card:hover {
+  transform: scale(1.05);
+}
