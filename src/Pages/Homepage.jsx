@@ -29,13 +29,13 @@ const Homepage = () => {
 
       <div className="space-y-10 py-20">
         <HomeProductSection data={mens_kurta} section={"Women's Earring"} />
-        <HomeProductCard categoryId={1} />
+        <HomeProductCard categoryId={54} />
         <HomeProductSection data={mensShoesPage1} section={"Women's Ring"} />
-        <HomeProductCard categoryId={2} />
-        <HomeProductSection data={gounsPage1} section={"Women's Anklet"} />
         <HomeProductCard categoryId={3} />
+        <HomeProductSection data={gounsPage1} section={"Women's Anklet"} />
+        <HomeProductCard categoryId={52} />
         <HomeProductSection data={kurtaPage1} section={"Women's Accessories"}  />
-        <HomeProductCard categoryId={4} />
+        <HomeProductCard categoryId={53} />
       </div>
     </div>
   );
