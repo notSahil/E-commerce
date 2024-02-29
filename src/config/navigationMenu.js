@@ -44,7 +44,7 @@ export const navigation = {
         },
         {
           id: 'brands',
-          name: 'Brands',
+          name: 'Brands (Coming soon)',
           items: [
             { name: 'Full Nelson', id: '#' },
             { name: 'My Way', id: '#' },
@@ -62,13 +62,13 @@ export const navigation = {
         {
           name: 'New Arrivals',
           id: '#',
-          imageSrc: 'images/config3.jpg',
+          imageSrc: 'images/man_i1.jpg',
           imageAlt: 'Locket',
         },
         {
           name: 'Daily to Wear Accessories',
           id: '#',
-          imageSrc: 'images/config4.jpg',
+          imageSrc: 'images/man_i2.png',
           imageAlt: 'Locket',
         },
       ],
