@@ -47,7 +47,7 @@ public class AppConfig {
                                 "http://localhost:3000", 
                                 "http://localhost:4000",
                                 "http://localhost:4200",
-                                "http://65.0.181.27:3000",
+                                "http://52.66.179.216:3000",
                                 "http://localhost:3001"
                                 
                             )
