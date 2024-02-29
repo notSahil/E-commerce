@@ -95,7 +95,7 @@ export const navigation = {
         },
         {
           id: 'brands',
-          name: 'Brands',
+          name: 'Brands (Coming soon)',
           items: [
             { name: 'Re-Arranged', id: '#' },
             { name: 'Counterfeit', id: '#' },
