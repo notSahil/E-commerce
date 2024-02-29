@@ -40,16 +40,32 @@ export default function LoginUserForm({ handleNext }) {
     };
 
     try {
-      const response = await dispatch(login(userData));
-      if (response.error) {
-        setOpenSnackBar(true);
-        setErrorMessage(response.error);
+      console.log("userdata:--",userData);
+      // Fetch user data from the API endpoint
+      const response = await axios.get(`${API_BASE_URL}/api/admin/Customer/users`);
+      const users = response.data;
+
+      // Match email with the provided data
+      const matchedUser = users.find((user) => user.email === email);
+      console.log("matched user---",matchedUser.role);
+      
+
+      
+
+      if (matchedUser && matchedUser.role === "ROLE_USER") {
+        // Redirect to user page if the role is "ROLE_USER"
+        navigate("/admin"); // or navigate to the user panel if there's one
       } else {
-        navigate(handleNext);
+        // Redirect to admin page if the role is not "ROLE_USER" or no user is found
+        navigate("/");
       }
+      
+
+      // Dispatch login action after handling redirection
+      dispatch(login(userData));
     } catch (error) {
-      setErrorMessage('Email or Password is incorrect.');
-      setOpenSnackBar(true);
+      console.error("Error fetching user data:", error);
+      // Handle error fetching user data
     }
   };
 
